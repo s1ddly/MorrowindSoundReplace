@@ -40,7 +40,7 @@ If(Test-Path -Path $mwfolder\Morrowind.exe -PathType Leaf){
     echo "Please Choose an mp3 file"
     $inmp3 = Get-File("","Choose .mp3 File")
     echo $inmp3
-    If(!($inmp3 -contains ".mp3")){
+    If(!($inmp3.Contains(".mp3"))){
         [System.Windows.MessageBox]::Show("Not a valid mp3 file! Exiting now.", "Error", 0, "Error")
         Exit 2
     }
@@ -48,7 +48,7 @@ If(Test-Path -Path $mwfolder\Morrowind.exe -PathType Leaf){
     #Select input wav
     echo "Please Choose a wav file"
     $inwav = Get-File("","Choose .wav File")
-    If(!($inwav -contains ".wav")){
+    If(!($inwav.Contains(".wav"))){
         [System.Windows.MessageBox]::Show("Not a valid mp3 file! Exiting now.", "Error", 0, "Error")
         Exit 2
     }
@@ -58,8 +58,8 @@ If(Test-Path -Path $mwfolder\Morrowind.exe -PathType Leaf){
 
     #Copy/OverWrite
     echo "Generating list of files to overwrite"
-    $mp3list = Get-ChildItem -Path "$mwfolder\Data Files\Sound" -Filter *.mp3 -Recurse
-    $wavlist = Get-ChildItem -Path "$mwfolder\Data Files\Sound" -Filter *.wav -Recurse
+    #$mp3list = Get-ChildItem -Path "$mwfolder\Data Files\Sound" -Filter *.mp3 -Recurse
+    #$wavlist = Get-ChildItem -Path "$mwfolder\Data Files\Sound" -Filter *.wav -Recurse
     echo "OverWriting mp3's"
 
 } Else {
