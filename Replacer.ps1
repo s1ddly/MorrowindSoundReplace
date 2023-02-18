@@ -32,14 +32,13 @@ Function Get-File($initialDirectory="")
 
 $mwfolder = Get-Folder
 
-echo "$mwfolder\Data Files\Sound"
+#echo "$mwfolder\Data Files\Sound"
 
 If(Test-Path -Path $mwfolder\Morrowind.exe -PathType Leaf){
     
     #Select input mp3
     echo "Please Choose an mp3 file"
     $inmp3 = Get-File("","Choose .mp3 File")
-    echo $inmp3
     If(!($inmp3.Contains(".mp3"))){
         [System.Windows.MessageBox]::Show("Not a valid mp3 file! Exiting now.", "Error", 0, "Error")
         Exit 2
@@ -50,11 +49,14 @@ If(Test-Path -Path $mwfolder\Morrowind.exe -PathType Leaf){
     $inwav = Get-File("","Choose .wav File")
     If(!($inwav.Contains(".wav"))){
         [System.Windows.MessageBox]::Show("Not a valid mp3 file! Exiting now.", "Error", 0, "Error")
-        Exit 2
+        Exit 3
     }
 
     #Backup?
-    [System.Windows.MessageBox]::Show("Do you want to take a backup of the original sounds?", "Backup", 4, "Question")
+    $backupindicator = [System.Windows.MessageBox]::Show("Do you want to take a backup of the original sounds?", "Backup", 4, "Question")
+    If($backupindicator -eq "Yes"){
+        Copy-Item -Path "$mwfolder\Data Files\Sound\*" -Destination ".\backup" -Recurse
+    }
 
     #Copy/OverWrite
     echo "Generating list of files to overwrite"
