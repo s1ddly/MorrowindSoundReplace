@@ -24,6 +24,8 @@ Function Get-File($initialDirectory=""){
     return $file
 }
 
+Add-Type -AssemblyName PresentationFramework
+
 echo "Please Select the Morrowind installation Folder(This is the folder that contains the Morrowind.exe file)"
 
 $mwfolder = Get-Folder
@@ -48,6 +50,7 @@ If(Test-Path -Path $mwfolder\Morrowind.exe -PathType Leaf){
     }
 
     #Backup?
+    echo "Do you want to take a backup?"
     $backupindicator = [System.Windows.MessageBox]::Show("Do you want to take a backup of the original sounds? This is highly recommended", "Backup", 4, "Question")
     If($backupindicator -eq "Yes"){
         echo "Please be patient, this could take a few minutes >_<"
@@ -72,6 +75,6 @@ If(Test-Path -Path $mwfolder\Morrowind.exe -PathType Leaf){
     echo "Copy complete, enjoy your modded Morowind!"
 
 } Else {
-    [System.Windows.MessageBox]::Show("This isn't a Valid Morrowind folder! Exiting now.", "Error", 0, "Error")
+    $exitbox = [System.Windows.MessageBox]::Show("This isn't a Valid Morrowind folder! Exiting now.", "Error", 0, "Error")
     Exit 1
 }
