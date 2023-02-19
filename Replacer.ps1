@@ -24,7 +24,7 @@ Function Get-File($initialDirectory=""){
     return $file
 }
 
-echo "Please Select the Morrowind installation Folder"
+echo "Please Select the Morrowind installation Folder(This is the folder that contains the Morrowind.exe file)"
 
 $mwfolder = Get-Folder
 
