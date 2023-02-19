@@ -56,15 +56,15 @@ If(Test-Path -Path $mwfolder\Morrowind.exe -PathType Leaf){
 
     #Copy/OverWrite
     echo "Generating list of files to overwrite"
-    $mp3list = Get-ChildItem -Path "$mwfolder\Data Files\Sound" -Filter *.mp3 -Recurse
-    $wavlist = Get-ChildItem -Path "$mwfolder\Data Files\Sound" -Filter *.wav -Recurse
+    $mp3list = Get-ChildItem -Path "$mwfolder\Data Files\Sound" -Filter *.mp3 -Recurse | Select -ExpandProperty FullName
+    $wavlist = Get-ChildItem -Path "$mwfolder\Data Files\Sound" -Filter *.wav -Recurse | Select -ExpandProperty FullName
     
-    echo "OverWriting mp3's, this could take a while too"
+    echo "OverWriting mp3's, this could take a while -_-"
     Foreach ($mp3path in $mp3list){
         Copy-Item -Path $inmp3 -Destination $mp3path -Force
     }
     
-    echo "OverWriting wav's, this shouldn't take as long"
+    echo "OverWriting wav's, this shouldn't take as long :3"
     Foreach ($wavpath in $wavlist){
         Copy-Item -Path $inwav -Destination $wavpath -Force
     }
